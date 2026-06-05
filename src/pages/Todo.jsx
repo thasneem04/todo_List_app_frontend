@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../api";
 
 function Todo() {
   const [todos, setTodos] = useState([]);
@@ -13,7 +14,7 @@ function Todo() {
   async function getTodos(signal) {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/todos",
+        `${API_URL}/api/todos`,
         {
           signal: signal,
           headers: {
@@ -49,7 +50,7 @@ function Todo() {
     };
 
     await axios.post(
-      "http://localhost:5000/api/todos",
+      `${API_URL}/api/todos`,
       newTodo,
       {
         headers: {
@@ -65,7 +66,7 @@ function Todo() {
 
   async function deleteTodo(id) {
     await axios.delete(
-      `http://localhost:5000/api/todos/${id}`,
+      `${API_URL}/api/todos/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -88,7 +89,7 @@ function Todo() {
     };
 
     await axios.put(
-      `http://localhost:5000/api/todos/${editId}`,
+      `${API_URL}/api/todos/${editId}`,
       updatedTodo,
       {
         headers: {
